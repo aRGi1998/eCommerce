@@ -1,16 +1,22 @@
-<div class="row">
-    <div class="col-md-4" *ngFor="let product of products">
-      <div class="card h-100 mb-4 shadow-sm">
-        <img class="card-img-top h-100" [src]="product.imagePath" alt="Product image">
-        <!-- <i class="far fa-heart wishlist-icon" (click)="addToCart(product)" [ngClass]="{'active': product.isInWishlist}"></i> -->
-        <div class="card-body">
-          <h5 class="card-title">{{ product.name }}</h5>
-          <p class="card-text">{{ product.description }}</p>
-          <div class="d-flex justify-content-between align-items-center">
-            <small class="text-muted">$ {{ product.price }}</small>
-            <i class="fas fa-shopping-cart" (click)="addToCart(product)"  [ngClass]="{'active': product.isInWishlist}"></i>
-          </div>
+<app-user-header></app-user-header>
+<section style="background-color: #eee;">
+    <div class="text-center container py-5">
+      <h4 class="mt-4 mb-5"><strong>Bestsellers</strong></h4>
+        <div class="row">
+            <div class="col-md-4" *ngFor="let product of products">
+              <div class="card h-100 mb-4 shadow-sm">
+                <img class="card-img-top h-100" [src]="product.imagePath" alt="Product image">
+                <div class="card-body">
+                  <i class="d-flex justify-content-start fa-solid fa-heart" [ngClass]="{'active': product.isInWishlist}" (click)="addToWishlist(product)"></i>
+                  <h5 class="card-title">{{ product.name }}</h5>
+                  <p class="card-text">{{ product.description }}</p>
+                  <div class="d-flex justify-content-between align-items-center">
+                    <small class="text-muted">$ {{ product.price }}</small>
+                    <i class="fas fa-shopping-cart"  [ngClass]="{'active': product.isInWishlist}" (click)="addToCart(product)"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
+</section>

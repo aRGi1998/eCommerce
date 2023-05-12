@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
+import { Product } from '../models/product';
 import { ProductService } from '../service/product.service';
 import { CartService } from '../service/cart.service';
-import { Product } from '../models/product';
-
 
 @Component({
   selector: 'app-home',
@@ -10,29 +9,24 @@ import { Product } from '../models/product';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent {
+
   products!: Product[];
-  product!: Product;
 
   constructor(
     private productService: ProductService,
     public cartService: CartService,
     ) { }
-    ngOnInit(): void {
-      const cart = this.cartService.getItems();
-      const cartLength = cart.length;
-      console.log(`The cart contains ${cartLength} items.`);
-      this.getProducts();
-    }
-    getProducts(): void {
+
+  ngOnInit(): void {
       this.products = this.productService.getProducts();
+      console.log(this.products,'y')
     }
-  
     addToCart(product:any) {
-     this.cartService.addToCart(product);
-     product.isInWishlist = true;
+      this.cartService.addToCart(product);
+      product.isInWishlist = true;
+     }
+    addToWishlist(product:any){
+      this.cartService.addToWishlist(product);
+      product.isInWishlist
     }
-    
-   }
-  
-
-
+}
